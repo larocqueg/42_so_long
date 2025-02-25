@@ -10,3 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/so_long.h"
+
+int	main(int ac, char **av)
+{
+	if (ac == 2)
+	{
+	}
+	ft_putstr_fd("ERROR\nUsage: ./so_long map.ber\n", 2);
+	return (1);
+}
