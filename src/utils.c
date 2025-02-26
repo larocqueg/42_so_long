@@ -21,5 +21,5 @@ int	ft_open(char *map)
 	if (fd == -1)
 		return (ft_putstr_fd(NO_FILE, 2),
 			ft_putstr_fd(map, 2), ft_putstr_fd("\n", 2), 0);
-	return (1);
+	return (fd);
 }
