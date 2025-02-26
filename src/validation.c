@@ -21,7 +21,7 @@ int	valid_format(char *map)
 		return (0);
 	return (1);
 }
-
+/*
 int	valid_size(char *map)
 {
 }
@@ -43,4 +43,4 @@ int	ft_validation(char *map)
 	else if (!valid_path(map))
 		return (ft_putstr_fd(PATH_ERROR, 2), 0);
 	return (1);
-}
+}*/

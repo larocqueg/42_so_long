@@ -11,11 +11,15 @@
 /* ************************************************************************** */
 #include "../includes/so_long.h"
 
-int	ft_openmap(t_game *game, char *map)
+int	ft_open(char *map)
 {
 	int		fd;
 
+	if (!valid_format(map))
+		return (ft_putstr_fd(MAP_TYPE, 2), 0);
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		return (ft_putstr_fd(NO_FILE), 0);
+		return (ft_putstr_fd(NO_FILE, 2),
+			ft_putstr_fd(map, 2), ft_putstr_fd("\n", 2), 0);
+	return (1);
 }

@@ -15,8 +15,8 @@
 int	main(int ac, char **av)
 {
 	if (ac != 2)
-		return (ft_putstr_fd(AV_ERROR, 2));
-	if (!ft_openmap(av[1]))
-		return (ft_putstr_fd(NO_FILE, 2), 1);
+		return (ft_putstr_fd(AV_ERROR, 2), 1);
+	if (!ft_open(av[1]))
+		return (1);
 	return (0);
 }

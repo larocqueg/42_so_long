@@ -16,6 +16,7 @@
 //# include <mlx.h>
 # include "../libft/libft.h"
 
+# define NO_FILE	"Error: no such file or directory: "
 # define MAP_TYPE	"Error: invlid map format, ensure its file is .ber!\n"
 # define MAP_SIZE	"Error: invalid map size!\n"
 # define MAP_WALLS	"Error: The map is not surrounded by walls!\n"
@@ -32,6 +33,9 @@ typedef struct s_map
 	void	*player;
 	void	*coin;
 }	t_game;
+
+//utils.c
+int	ft_open(char *map);
 
 // validation.c
 int	ft_validation(char *map);
