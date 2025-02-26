@@ -13,7 +13,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../minilibx-linux/mlx.h"
+//# include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 
 # define NO_FILE	"Error: no such file or directory: "
@@ -39,9 +39,5 @@ int	ft_open(char *map);
 
 // validation.c
 int	ft_validation(char *map);
-int	valid_format(char *map);
-int	valid_size(char *map);
-int	valid_walls(char *map);
-int	valid_path(char *map);
 
 #endif

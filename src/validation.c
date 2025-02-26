@@ -12,26 +12,22 @@
 
 #include "../includes/so_long.h"
 
-int	valid_format(char *map)
+static int	valid_size(char *map)
 {
-	int	format_len;
-
-	format_len = ft_strlen(map) - 4;
-	if (ft_strncmp(map + format_len, ".ber", 4) != 0)
-		return (0);
+	(void)map;
 	return (1);
 }
-/*
-int	valid_size(char *map)
+
+static int	valid_walls(char *map)
 {
+	(void)map;
+	return (1);
 }
 
-int	valid_walls(char *map)
+static int	valid_path(char *map)
 {
-}
-
-int	valid_path(char *map)
-{
+	(void)map;
+	return (1);
 }
 
 int	ft_validation(char *map)
@@ -43,4 +39,4 @@ int	ft_validation(char *map)
 	else if (!valid_path(map))
 		return (ft_putstr_fd(PATH_ERROR, 2), 0);
 	return (1);
-}*/
+}
