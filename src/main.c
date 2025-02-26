@@ -15,6 +15,8 @@
 int	main(int ac, char **av)
 {
 	if (ac != 2)
-		ft_putstr_fd("ERROR\nUsage: ./so_long "map name"\n", 2);
-	return (1);
+		return (ft_putstr_fd(AV_ERROR, 2));
+	if (!ft_validation(av[1]));
+		return (1);
+	return (0);
 }

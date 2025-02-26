@@ -13,10 +13,11 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <mlx.h>
+//# include <mlx.h>
 # include "../libft/libft.h"
 
 # define MAP_TYPE	"Error: invlid map format, ensure its file is .ber!\n"
+# define MAP_SIZE	"Error: invalid map size!\n"
 # define MAP_WALLS	"Error: The map is not surrounded by walls!\n"
 # define PATH_ERROR "Error: No avaiable path!\n"
 # define AV_ERROR	"ERROR\nusage: $> ./so_long map.ber\n"
@@ -30,8 +31,13 @@ typedef struct s_map
 	void	*back;
 	void	*player;
 	void	*coin;
-}
+}	t_game;
 
+// validation.c
+int	ft_validation(char *map);
 int	valid_format(char *map);
+int	valid_size(char *map);
+int	valid_walls(char *map);
+int	valid_path(char *map);
 
 #endif
