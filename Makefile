@@ -21,20 +21,24 @@ CFLAGS = -Wall -Wextra -Werror -g
 SRC_DIR = ./src
 INCLUDES = ./includes
 LIBFT_DIR = ./libft
+MLX_DIR = ./minilibx-linux
 
 # Sources
 SRC = $(SRC_DIR)/main.c \
 	  $(SRC_DIR)/utils.c \
-	  $(SRC_DIR)/validation.c 
+	  $(SRC_DIR)/validation.c \
 
 # Objects
 OBJS = $(SRC:.c=.o)
 LIBFT = $(LIBFT_DIR)/libft.a
+MLX = $(MLX_DIR)/libmlx_Linux.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -L$(LIBFT_DIR) -lft -o $(NAME)
+$(NAME): $(OBJS) $(MLX_OBJS) $(LIBFT)
+	make -C $(MLX_DIR)
+	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR)\
+		-lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
@@ -45,6 +49,7 @@ $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 clean: 
 	rm -rf $(OBJS)
 	make clean -C $(LIBFT_DIR)
+	make clean -C $(MLX_DIR)
 
 fclean: clean
 	rm -rf $(NAME)
