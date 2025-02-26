@@ -25,14 +25,13 @@
 
 typedef struct s_map
 {
-	size_t	width;
-	size_t	height;
-	size_t	to_colect;
-	void	*wall;
-	void	*back;
-	void	*player;
-	void	*coin;
-}	t_game;
+}		t_map;
+
+typedef struct s_size
+{
+	int	x;
+	int	y;
+}		t_size;
 
 //utils.c
 int	ft_open(char *map);
