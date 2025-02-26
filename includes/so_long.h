@@ -16,7 +16,22 @@
 # include <mlx.h>
 # include "../libft/libft.h"
 
-# define MAP_ERROR	"Error: invlid map!\n"
+# define MAP_TYPE	"Error: invlid map format, ensure its file is .ber!\n"
+# define MAP_WALLS	"Error: The map is not surrounded by walls!\n"
+# define PATH_ERROR "Error: No avaiable path!\n"
 # define AV_ERROR	"ERROR\nusage: $> ./so_long map.ber\n"
+
+typedef struct s_map
+{
+	size_t	width;
+	size_t	height;
+	size_t	to_colect;
+	void	*wall;
+	void	*back;
+	void	*player;
+	void	*coin;
+}
+
+int	valid_format(char *map);
 
 #endif

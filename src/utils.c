@@ -1,20 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gde-la-r <gde-la-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 16:16:12 by gde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/25 16:16:14 by gde-la-r         ###   ########.fr       */
+/*   Created: 2025/02/26 14:12:32 by gde-la-r          #+#    #+#             */
+/*   Updated: 2025/02/26 14:21:32 by gde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	main(int ac, char **av)
+int	valid_format(char *map)
 {
-	if (ac != 2)
-		ft_putstr_fd("ERROR\nUsage: ./so_long "map name"\n", 2);
-	return (1);
 }
