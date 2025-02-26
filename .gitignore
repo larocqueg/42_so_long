@@ -1,5 +1,6 @@
 *.o
 *.a
+.*.swp
 so_long
 minilibx_linux.tgz
 minilibx-linux
