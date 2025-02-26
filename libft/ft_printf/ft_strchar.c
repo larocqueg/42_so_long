@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-la-r <gde-la-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: gde-la-r <gde-la-r@student.42porto.co      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 16:16:05 by gde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/25 16:16:06 by gde-la-r         ###   ########.fr       */
+/*   Created: 2024/10/21 13:39:03 by gde-la-r          #+#    #+#             */
+/*   Updated: 2025/02/04 16:16:04 by gde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include <unistd.h>
 
-# include <mlx.h>
-# include "../libft/libft.h"
+char	*ft_strchar(const char *s, int c)
+{
+	int	i;
 
-# define MAP_ERROR	"Error: invlid map!\n"
-# define AV_ERROR	"ERROR\nusage: $> ./so_long map.ber\n"
-
-#endif
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if ((char)c == '\0')
+		return ((char *)&s[i]);
+	return (NULL);
+}

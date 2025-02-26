@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-la-r <gde-la-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: gde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 16:16:05 by gde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/25 16:16:06 by gde-la-r         ###   ########.fr       */
+/*   Created: 2024/11/08 15:21:46 by gde-la-r          #+#    #+#             */
+/*   Updated: 2024/11/08 15:27:37 by gde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "ft_printf.h"
 
-# include <mlx.h>
-# include "../libft/libft.h"
-
-# define MAP_ERROR	"Error: invlid map!\n"
-# define AV_ERROR	"ERROR\nusage: $> ./so_long map.ber\n"
-
-#endif
+int	ft_putchar(int c)
+{
+	write(1, &c, 1);
+	return (1);
+}
