@@ -16,22 +16,20 @@ static int	valid_format(char *map)
 	int	form_len;
 
 	form_len = ft_strlen(map);
-	if (form_len > 4)
+	if (form_len >= 4)
 		form_len -= 4;
 	if (ft_strncmp(map + form_len, ".ber", 4) != 0)
 		return (0);
 	return (1);
 }
 
-int	ft_open(char *map)
+int	ft_open(char *map, t_game *game)
 {
-	int		fd;
-
-	if (!valid_format(map))
-		return (ft_putstr_fd(MAP_TYPE, 2), 0);
-	fd = open(map, O_RDONLY);
-	if (fd == -1)
-		return (ft_putstr_fd(NO_FILE, 2),
+	game->fd = open(map, O_RDONLY);
+	if (game->fd == -1)
+		return (close(game->fd), ft_putstr_fd(NO_FILE, 2),
 			ft_putstr_fd(map, 2), ft_putstr_fd("\n", 2), 0);
-	return (fd);
+	if (!valid_format(map))
+		return (close(game->fd), ft_putstr_fd(FORMAT_ERROR, 2), 0);
+	return (game->fd);
 }

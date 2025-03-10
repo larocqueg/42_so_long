@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gde-la-r <gde-la-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 16:16:12 by gde-la-r          #+#    #+#             */
-/*   Updated: 2025/03/10 14:10:52 by gde-la-r         ###   ########.fr       */
+/*   Created: 2025/03/10 18:02:37 by gde-la-r          #+#    #+#             */
+/*   Updated: 2025/03/10 18:03:34 by gde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	main(int ac, char **av)
+void	ft_free(t_game *game, char *line)
 {
-	t_game	game;
-	int		i;
+	int	i;
 
-	if (ac == 2)
-	{
-		game_init(&game);
-		ft_load_map(av[1], &game);
-		i = 0;
-		while (game.map[i])
-			ft_printf("%s\n", game.map[i++]);
-		ft_free(&game, NULL);
-		return (0);
-	}
-	return (ft_putstr_fd(AV_ERROR, 2), 1);
+	if (line)
+		free(line);
+	i = 0;
+	while (game->map[i])
+		free(game->map[i++]);
+	free(game->map);
 }

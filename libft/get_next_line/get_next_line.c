@@ -6,7 +6,7 @@
 /*   By: gde-la-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:40:39 by gde-la-r          #+#    #+#             */
-/*   Updated: 2024/11/16 15:53:29 by gde-la-r         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:48:22 by gde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+	{
+		if (file)
+		{
+			free(file);
+			file = NULL;
+		}
 		return (NULL);
+	}
 	file = ft_read_file(fd, file);
 	if (!file)
 		return (NULL);

@@ -27,6 +27,8 @@ MLX_DIR = ./minilibx-linux
 SRC = $(SRC_DIR)/main.c \
 	  $(SRC_DIR)/utils.c \
 	  $(SRC_DIR)/validation.c \
+	  $(SRC_DIR)/game_start.c \
+	  $(SRC_DIR)/frees.c \
 
 # Objects
 OBJS = $(SRC:.c=.o)

@@ -13,8 +13,8 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-//# include "../mlx_linux/mlx.h"
-//# include "../mlx_linux/mlx_int.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 # include "../libft/libft.h"
 
 # include <stdlib.h>
@@ -41,12 +41,12 @@
 /*                            Message Macros                                  */
 /* ************************************************************************** */
 
-# define NO_FILE	"Error: no such file or directory: "
-# define MAP_TYPE	"Error: invlid map format, ensure the file is .ber\n"
-# define MAP_SIZE	"Error: invalid map size!\n"
-# define MAP_WALLS	"Error: The map is not surrounded by walls!\n"
-# define PATH_ERROR "Error: No avaiable path!\n"
-# define AV_ERROR	"ERROR\nusage: $> ./so_long map.ber\n"
+# define NO_FILE		"Error: no such file or directory: "
+# define FORMAT_ERROR	"Error: invlid map format, ensure the file is .ber\n"
+# define MAP_SIZE		"Error: invalid map size!\n"
+# define MAP_WALLS		"Error: The map is not surrounded by walls!\n"
+# define PATH_ERROR		"Error: No avaiable path!\n"
+# define AV_ERROR		"ERROR\nusage: $> ./so_long map.ber\n"
 
 /* ************************************************************************** */
 /*                                    Structs                                 */
@@ -79,12 +79,11 @@ typedef struct s_game
 	int			collectables_c;
 	bool		exit_access;
 	bool		start;
-	bool		open_box;
-	int			nb_moves;
-	t_position	pos_p;
-	t_position	pos_e;
-	t_position	*pos_c;
-	t_position	pos_player;
+	bool		door_open;
+	int			moves_c;
+	t_position	player_pos;
+	t_position	exit_pos;
+	t_position	*collectable_pos;
 	void		*mlx;
 	void		*win;
 	t_images	*img;
@@ -95,9 +94,16 @@ typedef struct s_game
 /* ************************************************************************** */
 
 //validation.c
-int	ft_validation(char *map);
+int		ft_validation(char *map);
 
 //utils.c
-int	ft_open(char *map);
+int		ft_open(char *map, t_game *game);
+
+//game_start.c
+void	game_init(t_game *game);
+int		ft_load_map(char *map, t_game *game);
+
+//frees.c
+void	ft_free(t_game *game, char *line);
 
 #endif
