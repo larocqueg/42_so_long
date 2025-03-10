@@ -6,15 +6,15 @@
 /*   By: gde-la-r <gde-la-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 16:16:05 by gde-la-r          #+#    #+#             */
-/*   Updated: 2025/02/25 16:16:06 by gde-la-r         ###   ########.fr       */
+/*   Updated: 2025/03/10 11:22:17 by gde-la-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../mlx_linux/mlx.h"
-# include "../mlx_linux/mlx_int.h"
+//# include "../mlx_linux/mlx.h"
+//# include "../mlx_linux/mlx_int.h"
 # include "../libft/libft.h"
 
 # include <stdlib.h>
@@ -22,6 +22,20 @@
 # include <stddef.h>
 # include <limits.h>
 # include <fcntl.h>
+
+/* ************************************************************************** */
+/*                            key Macros                                      */
+/* ************************************************************************** */
+
+# define W_KEY		119
+# define A_KEY		97
+# define S_KEY		115
+# define D_KEY		100
+# define LEFT_KEY	65361
+# define UP_KEY		65362
+# define RIGHT_KEY	65363
+# define DOWN_KEY	65364
+# define ESC_KEY	65307
 
 /* ************************************************************************** */
 /*                            Message Macros                                  */
@@ -46,13 +60,13 @@ typedef struct s_position
 
 typedef struct s_image
 {
-	void	title;
-	void	player;
-	void	collectable;
-	void	wall;
-	void	door_open;
-	void	door_close;
-}	t_image;
+	void	*title;
+	void	*player;
+	void	*collectable;
+	void	*wall;
+	void	*door_open;
+	void	*door_close;
+}	t_images;
 
 typedef struct s_game
 {
@@ -75,5 +89,15 @@ typedef struct s_game
 	void		*win;
 	t_images	*img;
 }	t_game;
+
+/* ************************************************************************** */
+/*                               Prototypes                                   */
+/* ************************************************************************** */
+
+//validation.c
+int	ft_validation(char *map);
+
+//utils.c
+int	ft_open(char *map);
 
 #endif
