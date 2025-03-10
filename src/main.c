@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 		if (!fd)
 			return (ft_putstr_fd(NO_FILE, 2), 1);
 		ft_printf("Valid format and existing file!, fd = %i\n", fd);
-			return (ft_putstr_fd(AV_ERROR, 2), 1);
+		return (ft_putstr_fd(AV_ERROR, 2), 1);
 	}
 	return (0);
 }

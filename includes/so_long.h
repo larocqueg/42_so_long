@@ -13,8 +13,19 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-//# include "../minilibx-linux/mlx.h"
+# include "../mlx_linux/mlx.h"
+# include "../mlx_linux/mlx_int.h"
 # include "../libft/libft.h"
+
+# include <stdlib.h>
+# include <stdbool.h>
+# include <stddef.h>
+# include <limits.h>
+# include <fcntl.h>
+
+/* ************************************************************************** */
+/*                            Message Macros                                  */
+/* ************************************************************************** */
 
 # define NO_FILE	"Error: no such file or directory: "
 # define MAP_TYPE	"Error: invlid map format, ensure the file is .ber\n"
@@ -23,20 +34,46 @@
 # define PATH_ERROR "Error: No avaiable path!\n"
 # define AV_ERROR	"ERROR\nusage: $> ./so_long map.ber\n"
 
-typedef struct s_map
-{
-}		t_map;
+/* ************************************************************************** */
+/*                                    Structs                                 */
+/* ************************************************************************** */
 
-typedef struct s_size
+typedef struct s_position
 {
 	int	x;
 	int	y;
-}		t_size;
+}	t_position;
 
-//utils.c
-int	ft_open(char *map);
+typedef struct s_image
+{
+	void	title;
+	void	player;
+	void	collectable;
+	void	wall;
+	void	door_open;
+	void	door_close;
+}	t_image;
 
-// validation.c
-int	ft_validation(char *map);
+typedef struct s_game
+{
+	int			fd;
+	char		**map;
+	int			map_height;
+	int			map_width;
+	int			players_c;
+	int			exit_c;
+	int			collectables_c;
+	bool		exit_access;
+	bool		start;
+	bool		open_box;
+	int			nb_moves;
+	t_position	pos_p;
+	t_position	pos_e;
+	t_position	*pos_c;
+	t_position	pos_player;
+	void		*mlx;
+	void		*win;
+	t_images	*img;
+}	t_game;
 
 #endif
