@@ -21,10 +21,6 @@ int	main(int ac, char **av)
 	{
 		game_init(&game);
 		ft_load_map(av[1], &game);
-		i = 0;
-		while (game.map[i])
-			ft_printf("%s\n", game.map[i++]);
-		ft_free(&game, NULL);
 		return (0);
 	}
 	return (ft_putstr_fd(AV_ERROR, 2), 1);
