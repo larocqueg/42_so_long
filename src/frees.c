@@ -19,7 +19,10 @@ void	ft_free(t_game *game, char *line)
 	if (line)
 		free(line);
 	i = 0;
-	while (game->map[i])
-		free(game->map[i++]);
-	free(game->map);
+	if (game && game->map)
+	{
+		while (game->map[i])
+			free(game->map[i++]);
+		free(game->map);
+	}
 }

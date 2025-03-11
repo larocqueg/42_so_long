@@ -15,7 +15,7 @@ NAME = so_long
 
 # Compilation
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -Imlx_linux
 
 # Paths
 SRC_DIR = ./src
@@ -37,25 +37,41 @@ MLX = $(MLX_DIR)/libmlx_Linux.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(MLX_OBJS) $(LIBFT)
-	make -C $(MLX_DIR)
-	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR)\
+$(NAME): $(MLX) $(OBJS) $(LIBFT)
+	@make -C $(MLX_DIR) > /dev/null 2>&1
+	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) \
 		-lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
+	@clear
+	@echo "✅ Successfully built $(NAME)!"
+
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR) --silent
+
+$(MLX):
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		git clone https://github.com/42Paris/minilibx-linux.git > /dev/null 2>&1; \
+	fi
+	@$(MAKE) -C $(MLX_DIR) --silent
 
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -I $(INCLUDES) -I $(LIBFT_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(INCLUDES) -I $(LIBFT_DIR) -c $< -o $@
 
-clean: 
-	rm -rf $(OBJS)
-	make clean -C $(LIBFT_DIR)
-	make clean -C $(MLX_DIR)
+clean:
+	@rm -rf $(OBJS)
+	@make clean -C $(LIBFT_DIR) --silent
+	@make clean -C $(MLX_DIR) --silent
+	@clear
+	@echo "✅ clean completed successfully!"
 
 fclean: clean
-	rm -rf $(NAME)
-	make fclean -C $(LIBFT_DIR)
+	@rm -rf $(NAME)
+	@make fclean -C $(LIBFT_DIR) --silent
+	@echo "✅ fclean completed successfully!"
 
 re: fclean
-	make all
+	@make all
+	@clear
+	@echo "✅ so_long successfully rebuilt!"i
+
+.PHONY: all clean fclean re

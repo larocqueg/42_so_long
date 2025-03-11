@@ -58,7 +58,7 @@ static int	ft_add_line(t_game *game, char *line, int i, int j)
 	}
 	temp[i] = malloc(sizeof(char) * (ft_strlen(line) + 1));
 	if (!temp[i])
-		return (0);
+		return (free(temp), 0);
 	while (j < (int)ft_strlen(line))
 	{
 		temp[i][j] = line[j];
@@ -73,14 +73,12 @@ static int	ft_add_line(t_game *game, char *line, int i, int j)
 
 int	ft_load_map(char *map, t_game *game)
 {
-	int		i;
 	int		checker;
 	char	*line;
 
 	checker = ft_open(map, game);
 	if (!checker)
 		return (0);
-	i = 0;
 	line = NULL;
 	while (1)
 	{
@@ -92,6 +90,5 @@ int	ft_load_map(char *map, t_game *game)
 			return (ft_free(game, line), 0);
 		free(line);
 	}
-	get_next_line(-1);
-	return (1);
+	return (get_next_line(-1), 1);
 }
