@@ -97,6 +97,10 @@ typedef struct s_game
 //validation.c
 int		validations(t_game *game);
 
+//positions.c
+int		set_player_pos(t_game *game, int x, int y);
+int		set_exit_pos(t_game *game, int x, int y);
+
 //utils.c
 int		ft_open(char *map, t_game *game);
 

@@ -64,7 +64,6 @@ static int	valid_walls(t_game *game)
 
 static int	valid_chars(t_game *game, int x, int y)
 {
-	y = 0;
 	while (y < game->map_height)
 	{
 		x = 0;
@@ -74,19 +73,13 @@ static int	valid_chars(t_game *game, int x, int y)
 				game->collectables_c++;
 			else if (game->map[y][x] == 'P')
 			{
-				game->players_c++;
-				if (game->players_c > 1)
+				if (!set_player_pos(game, x, y))
 					return (0);
-				game->player_pos.x = x;
-				game->player_pos.y = y;
 			}
 			else if (game->map[y][x] == 'E')
 			{
-				game->exit_c++;
-				if (game->exit_c > 1)
+				if (!set_exit_pos(game, x, y))
 					return (0);
-				game->exit_pos.x = x;
-				game->exit_pos.y = y;
 			}
 			else if (game->map[y][x] != '1' && game->map[y][x] != '0')
 				return (0);

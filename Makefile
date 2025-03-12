@@ -29,6 +29,7 @@ SRC = $(SRC_DIR)/main.c \
 	  $(SRC_DIR)/validation.c \
 	  $(SRC_DIR)/game_start.c \
 	  $(SRC_DIR)/frees.c \
+	  $(SRC_DIR)/positions.c \
 
 # Objects
 OBJS = $(SRC:.c=.o)
