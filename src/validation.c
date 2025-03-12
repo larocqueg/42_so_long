@@ -12,31 +12,61 @@
 
 #include "../includes/so_long.h"
 
-static int	valid_size(char *map)
+static int	valid_lines(t_game *game)
 {
-	(void)map;
+	int	y;
+	int	x;
+	int	prev_len;
+	int	len;
+
+	y = 0;
+	prev_len = -1;
+	while (game->map[y])
+	{
+		x = 0;
+		len = 0;
+		while (game->map[y][x])
+		{
+			x++;
+			len++;
+		}
+		if (prev_len != -1 && len != prev_len)
+			return (0);
+		prev_len = len;
+		y++;
+	}
+	game->map_width = prev_len;
+	game->map_height = y;
 	return (1);
 }
 
-static int	valid_walls(char *map)
+static int	valid_walls(t_game *game)
 {
-	(void)map;
+	int	x;
+	int	y;
+
+	x = 0;
+	while (game->map[0][x] && x < game->map_width)
+	{
+		if (game->map[0][x] != '1' || game->map[game->map_height - 1][x] != '1')
+			return (0);
+		x++;
+	}
+	y = 1;
+	while (y < game->map_height)
+	{
+		if (game->map[y][0] != '1' || game->map[y][game->map_width - 1] != '1')
+			return (0);
+		y++;
+	}
 	return (1);
 }
 
-static int	valid_path(char *map)
+int	validations(t_game *game)
 {
-	(void)map;
-	return (1);
-}
-
-int	ft_validation(char *map)
-{
-	if (!valid_size(map))
-		return (ft_putstr_fd(MAP_SIZE, 2), 0);
-	else if (!valid_walls(map))
-		return (ft_putstr_fd(MAP_WALLS, 2), 0);
-	else if (!valid_path(map))
-		return (ft_putstr_fd(PATH_ERROR, 2), 0);
+	if (!valid_lines(game))
+		return (ft_free(game, NULL), ft_putstr_fd(MAP_SIZE, 2), 0);
+	else if (!valid_walls(game))
+		return (ft_free(game, NULL), ft_putstr_fd(MAP_WALLS, 2), 0);
 	return (1);
 }

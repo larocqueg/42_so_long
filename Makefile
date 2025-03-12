@@ -60,7 +60,6 @@ $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 clean:
 	@rm -rf $(OBJS)
 	@make clean -C $(LIBFT_DIR) --silent
-	@make clean -C $(MLX_DIR) --silent
 	@clear
 	@echo "✅ clean completed successfully!"
 

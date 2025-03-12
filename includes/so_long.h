@@ -94,7 +94,7 @@ typedef struct s_game
 /* ************************************************************************** */
 
 //validation.c
-int		ft_validation(char *map);
+int		validations(t_game *game);
 
 //utils.c
 int		ft_open(char *map, t_game *game);
@@ -105,5 +105,6 @@ int		ft_load_map(char *map, t_game *game);
 
 //frees.c
 void	ft_free(t_game *game, char *line);
+void	ft_free_arr(char **arr);
 
 #endif

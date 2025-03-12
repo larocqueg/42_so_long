@@ -26,3 +26,16 @@ void	ft_free(t_game *game, char *line)
 		free(game->map);
 	}
 }
+
+void	ft_free_arr(char **arr)
+{
+	int	i;
+
+	if (!arr)
+		return ;
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+	return ;
+}

@@ -42,6 +42,16 @@ static char	*ft_remove_nl(char *line)
 	return (line);
 }
 
+static int	ft_get_height(t_game *game)
+{
+	int	y;
+
+	y = 0;
+	while (game->map[y])
+		y++;
+	return (y);
+}
+
 static int	ft_add_line(t_game *game, char *line, int i, int j)
 {
 	char	**temp;
@@ -58,8 +68,8 @@ static int	ft_add_line(t_game *game, char *line, int i, int j)
 	}
 	temp[i] = malloc(sizeof(char) * (ft_strlen(line) + 1));
 	if (!temp[i])
-		return (free(temp), 0);
-	while (j < (int)ft_strlen(line))
+		return (ft_free_arr(temp), 0);
+	while (j <= (int)ft_strlen(line))
 	{
 		temp[i][j] = line[j];
 		j++;
@@ -90,5 +100,6 @@ int	ft_load_map(char *map, t_game *game)
 			return (ft_free(game, line), 0);
 		free(line);
 	}
+	game->map_height = ft_get_height(game);
 	return (get_next_line(-1), 1);
 }
