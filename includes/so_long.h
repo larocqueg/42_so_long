@@ -45,6 +45,7 @@
 # define FORMAT_ERROR	"Error: invlid map format, ensure the file is .ber\n"
 # define MAP_SIZE		"Error: invalid map size!\n"
 # define MAP_WALLS		"Error: The map is not surrounded by walls!\n"
+# define INVALID_CHAR	"Error: There is a invalid character in the map!\n"
 # define PATH_ERROR		"Error: No avaiable path!\n"
 # define AV_ERROR		"ERROR\nusage: $> ./so_long map.ber\n"
 

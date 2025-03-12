@@ -22,7 +22,6 @@ int	main(int ac, char **av)
 		ft_load_map(av[1], &game);
 		if (!validations(&game))
 			return (1);
-		ft_printf("%i\n", game.map_height);
 		ft_free(&game, NULL);
 		return (0);
 	}
