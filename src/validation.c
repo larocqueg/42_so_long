@@ -125,6 +125,5 @@ int	validations(t_game *game)
 	else if (!valid_chars(game, 0, 0))
 		return (ft_free(game, NULL), ft_putstr_fd(INVALID_CHAR, 2), 0);
 	set_collectables_pos(game);
-	// remember to free this!!!
 	return (1);
 }

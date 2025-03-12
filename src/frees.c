@@ -25,6 +25,17 @@ void	ft_free(t_game *game, char *line)
 			free(game->map[i++]);
 		free(game->map);
 	}
+	if (game->mlx)
+	{
+		mlx_destroy_image(game->mlx, (*game).img.player);
+		mlx_destroy_image(game->mlx, (*game).img.collectable);
+		mlx_destroy_image(game->mlx, (*game).img.wall);
+		mlx_destroy_image(game->mlx, (*game).img.floor);
+		mlx_destroy_image(game->mlx, (*game).img.door_open);
+		mlx_destroy_image(game->mlx, (*game).img.door_close);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 }
 
 void	ft_free_arr(char **arr)
@@ -38,4 +49,9 @@ void	ft_free_arr(char **arr)
 		free(arr[i++]);
 	free(arr);
 	return ;
+}
+
+void	ft_free_collect_pos(t_game *game)
+{
+	free(game->collectable_pos);
 }

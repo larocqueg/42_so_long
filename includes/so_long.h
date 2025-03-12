@@ -50,6 +50,18 @@
 # define AV_ERROR		"ERROR\nusage: $> ./so_long map.ber\n"
 
 /* ************************************************************************** */
+/*                            Textures Macro                                  */
+/* ************************************************************************** */
+
+# define NAME			"so_long"
+# define FLOOR			"textures/floor.xpm"
+# define WALL			"textures/wall.xpm"
+# define COIN			"textures/emerald.xpm"
+# define PLAYER			"textures/player.xpm"
+# define DOORC			"textures/close_door.xpm"
+# define DOORO			"textures/open_door.xpm"
+
+/* ************************************************************************** */
 /*                                    Structs                                 */
 /* ************************************************************************** */
 
@@ -65,6 +77,7 @@ typedef struct s_image
 	void	*player;
 	void	*collectable;
 	void	*wall;
+	void	*floor;
 	void	*door_open;
 	void	*door_close;
 }	t_images;
@@ -87,7 +100,7 @@ typedef struct s_game
 	t_position	*collectable_pos;
 	void		*mlx;
 	void		*win;
-	t_images	*img;
+	t_images	img;
 }	t_game;
 
 /* ************************************************************************** */
@@ -111,5 +124,10 @@ int		ft_load_map(char *map, t_game *game);
 //frees.c
 void	ft_free(t_game *game, char *line);
 void	ft_free_arr(char **arr);
+void	ft_free_collect_pos(t_game *game);
+
+//load_images.c
+int		ft_load_images(t_game *game);
+void	ft_init_window(t_game *game);
 
 #endif

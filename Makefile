@@ -30,6 +30,7 @@ SRC = $(SRC_DIR)/main.c \
 	  $(SRC_DIR)/game_start.c \
 	  $(SRC_DIR)/frees.c \
 	  $(SRC_DIR)/positions.c \
+	  $(SRC_DIR)/load_images.c \
 
 # Objects
 OBJS = $(SRC:.c=.o)
@@ -67,6 +68,7 @@ clean:
 fclean: clean
 	@rm -rf $(NAME)
 	@make fclean -C $(LIBFT_DIR) --silent
+	@rm -rf $(MLX_DIR)
 	@echo "✅ fclean completed successfully!"
 
 re: fclean

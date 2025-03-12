@@ -22,7 +22,10 @@ int	main(int ac, char **av)
 		ft_load_map(av[1], &game);
 		if (!validations(&game))
 			return (1);
-		ft_free(&game, NULL);
+		game.mlx = mlx_init();
+		if (!ft_load_images(&game))
+			return (ft_free(&game, NULL), ft_free_collect_pos(&game), 1);
+		ft_init_window(&game);
 		return (0);
 	}
 	return (ft_putstr_fd(AV_ERROR, 2), 1);

@@ -33,3 +33,5 @@ int	ft_open(char *map, t_game *game)
 		return (close(game->fd), ft_putstr_fd(FORMAT_ERROR, 2), 0);
 	return (game->fd);
 }
+
+//flood_fill
