@@ -22,6 +22,8 @@ int	main(int ac, char **av)
 		ft_load_map(av[1], &game);
 		if (!validations(&game))
 			return (1);
+		if (!flood_fill_caller(&game))
+			return (ft_free(&game, NULL, 0), 1);
 		game.mlx = mlx_init();
 		if (!ft_load_images(&game))
 			return (ft_free(&game, NULL, 0), ft_free_collect_pos(&game), 1);

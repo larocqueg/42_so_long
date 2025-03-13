@@ -15,7 +15,6 @@
 char	*ft_read_file(int fd, char *file);
 char	*ft_new_line(char *file);
 char	*ft_update_line(char *file);
-char	*ft_strdup(const char *src);
 
 char	*get_next_line(int fd)
 {
@@ -116,24 +115,4 @@ char	*ft_update_line(char *file)
 	line[j] = '\0';
 	free(file);
 	return (line);
-}
-
-char	*ft_strdup(const char *src)
-{
-	size_t	i;
-	size_t	len;
-	char	*dup;
-
-	len = ft_strlen(src);
-	dup = (char *)malloc(sizeof(char) * (len + 1));
-	if (dup == NULL)
-		return (NULL);
-	i = 0;
-	while (src[i])
-	{
-		dup[i] = src[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
 }

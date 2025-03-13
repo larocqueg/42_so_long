@@ -124,7 +124,6 @@ int	validations(t_game *game)
 		return (ft_free(game, NULL, 0), ft_putstr_fd(MAP_WALLS, 2), 0);
 	else if (!valid_chars(game, 0, 0))
 	{
-		ft_printf("%i\n", game->collectables_c);
 		if (game->players_c == 0 || game->exit_c == 0)
 			return (ft_free(game, NULL, 0), ft_putstr_fd(INV_C, 2),
 				ft_putstr_fd(INV_C2, 2), 0);

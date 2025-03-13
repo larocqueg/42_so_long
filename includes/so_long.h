@@ -88,14 +88,18 @@ typedef struct s_game
 {
 	int			fd;
 	char		**map;
+	char		**map_copy;
 	int			map_height;
 	int			map_width;
 	int			players_c;
 	int			exit_c;
 	int			collectables_c;
+	int			reachable_c;
+	int			reachable_e;
 	bool		exit_access;
 	bool		start;
 	bool		door_open;
+	bool		exit_found;
 	int			moves_c;
 	t_position	player_pos;
 	t_position	exit_pos;
@@ -141,5 +145,8 @@ int		handle_key(int key, t_game *game);
 //handle_key_helper.c
 void	collect_check(t_game *game);
 void	redraw_map(t_game *game, int new_x, int new_y, char next_tile);
+
+//flood_fill.c
+bool	flood_fill_caller(t_game *game);
 
 #endif
