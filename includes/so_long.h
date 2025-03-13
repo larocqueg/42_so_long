@@ -126,7 +126,7 @@ int		ft_load_map(char *map, t_game *game);
 
 //frees.c
 int		close_window(t_game *game);
-void	ft_free(t_game *game, char *line);
+void	ft_free(t_game *game, char *line, int flag);
 void	ft_free_arr(char **arr);
 void	ft_free_collect_pos(t_game *game);
 

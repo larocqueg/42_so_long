@@ -94,7 +94,7 @@ int	handle_key(int key, t_game *game)
 	if (key == ESC)
 	{
 		ft_printf("EXITING GAME!\n");
-		ft_free(game, NULL);
+		ft_free(game, NULL, 1);
 		exit(0);
 	}
 	new_y = new_pos_y(key, game, new_y, new_x);

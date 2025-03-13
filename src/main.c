@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 			return (1);
 		game.mlx = mlx_init();
 		if (!ft_load_images(&game))
-			return (ft_free(&game, NULL), ft_free_collect_pos(&game), 1);
+			return (ft_free(&game, NULL, 0), ft_free_collect_pos(&game), 1);
 		ft_init_window(&game);
 		ft_draw_map(&game, 0, 0);
 		mlx_key_hook(game.win, handle_key, &game);

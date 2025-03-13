@@ -73,11 +73,17 @@ static int	valid_chars(t_game *game, int x, int y)
 				game->collectables_c++;
 			else if (game->map[y][x] == 'P')
 			{
-				if (!set_player_pos(game, x, y))
+				game->players_c++;
+				if (game->players_c > 1)
+					return (0);
+				if (!set_player_pos(game, x, y) || game->players_c > 1)
 					return (0);
 			}
 			else if (game->map[y][x] == 'E')
 			{
+				game->exit_c++;
+				if (game->exit_c > 1)
+					return (0);
 				if (!set_exit_pos(game, x, y))
 					return (0);
 			}
@@ -119,11 +125,11 @@ static void	set_collectables_pos(t_game *game)
 int	validations(t_game *game)
 {
 	if (!valid_lines(game))
-		return (ft_free(game, NULL), ft_putstr_fd(MAP_SIZE, 2), 0);
+		return (ft_free(game, NULL, 0), ft_putstr_fd(MAP_SIZE, 2), 0);
 	else if (!valid_walls(game))
-		return (ft_free(game, NULL), ft_putstr_fd(MAP_WALLS, 2), 0);
+		return (ft_free(game, NULL, 0), ft_putstr_fd(MAP_WALLS, 2), 0);
 	else if (!valid_chars(game, 0, 0))
-		return (ft_free(game, NULL), ft_putstr_fd(INVALID_CHAR, 2), 0);
+		return (ft_free(game, NULL, 0), ft_putstr_fd(INVALID_CHAR, 2), 0);
 	set_collectables_pos(game);
 	return (1);
 }

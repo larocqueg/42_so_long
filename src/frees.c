@@ -14,7 +14,7 @@
 
 int	close_window(t_game *game)
 {
-	ft_free(game, NULL);
+	ft_free(game, NULL, 1);
 	exit(0);
 	return (0);
 }
@@ -34,7 +34,7 @@ static void	destroy_all(t_game *game)
 	exit (0);
 }
 
-void	ft_free(t_game *game, char *line)
+void	ft_free(t_game *game, char *line, int flag)
 {
 	int	i;
 
@@ -48,7 +48,7 @@ void	ft_free(t_game *game, char *line)
 		free(game->map);
 	}
 	ft_free_collect_pos(game);
-	if (game->mlx)
+	if (flag == 1)
 		destroy_all(game);
 }
 

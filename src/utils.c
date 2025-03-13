@@ -59,7 +59,7 @@ int	is_open(t_game *game, char next_tile)
 		if (game->collectables_c == 0)
 		{
 			ft_printf("🎉You won in %d moves!🎉\n", game->moves_c);
-			ft_free(game, NULL);
+			ft_free(game, NULL, 1);
 			exit(0);
 		}
 		return (ft_printf("Exit is locked! Collect all emeralds first!\n"), 0);
