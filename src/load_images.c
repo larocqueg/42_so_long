@@ -122,11 +122,14 @@ int	handle_key(int key, t_game *game)
 	if (next_tile != '1' && next_tile != 'E')
 	{
 		game->map[game->player_pos.y][game->player_pos.x] = '0';
-		game->player_pos.x = new_x;
-		game->player_pos.y = new_y;
-		game->map[new_y][new_x] = 'P';
-		ft_printf("Moves: %d\n", game->moves_c++);
-		ft_draw_map(game, 0, 0);
+		if (new_x != game->player_pos.x || new_y != game->player_pos.y)
+		{
+			game->player_pos.x = new_x;
+			game->player_pos.y = new_y;
+			game->map[new_y][new_x] = 'P';
+			ft_printf("Moves: %d\n", ++game->moves_c);
+			ft_draw_map(game, 0, 0);
+		}
 	}
 	return (0);
 }
