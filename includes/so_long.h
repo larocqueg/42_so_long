@@ -47,6 +47,8 @@
 # define MAP_WALLS		"Error: The map is not surrounded by walls!\n"
 # define INVALID_CHAR	"Error: There is a invalid character in the map!\n"
 # define PATH_ERROR		"Error: No avaiable path!\n"
+# define INV_C			"Error: Invalid amount of players, "
+# define INV_C2			"exits or collectables!\n"
 # define AV_ERROR		"ERROR\nusage: $> ./so_long map.ber\n"
 
 /* ************************************************************************** */
