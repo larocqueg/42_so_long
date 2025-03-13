@@ -12,6 +12,28 @@
 
 #include "../includes/so_long.h"
 
+int	close_window(t_game *game)
+{
+	ft_free(game, NULL);
+	exit(0);
+	return (0);
+}
+
+static void	destroy_all(t_game *game)
+{
+	mlx_destroy_image(game->mlx, (*game).img.player);
+	mlx_destroy_image(game->mlx, (*game).img.collectable);
+	mlx_destroy_image(game->mlx, (*game).img.wall);
+	mlx_destroy_image(game->mlx, (*game).img.floor);
+	mlx_destroy_image(game->mlx, (*game).img.door_open);
+	mlx_destroy_image(game->mlx, (*game).img.door_close);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	exit (0);
+}
+
 void	ft_free(t_game *game, char *line)
 {
 	int	i;
@@ -25,17 +47,9 @@ void	ft_free(t_game *game, char *line)
 			free(game->map[i++]);
 		free(game->map);
 	}
+	ft_free_collect_pos(game);
 	if (game->mlx)
-	{
-		mlx_destroy_image(game->mlx, (*game).img.player);
-		mlx_destroy_image(game->mlx, (*game).img.collectable);
-		mlx_destroy_image(game->mlx, (*game).img.wall);
-		mlx_destroy_image(game->mlx, (*game).img.floor);
-		mlx_destroy_image(game->mlx, (*game).img.door_open);
-		mlx_destroy_image(game->mlx, (*game).img.door_close);
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-	}
+		destroy_all(game);
 }
 
 void	ft_free_arr(char **arr)

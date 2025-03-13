@@ -27,15 +27,15 @@
 /*                            key Macros                                      */
 /* ************************************************************************** */
 
-# define W_KEY		119
-# define A_KEY		97
-# define S_KEY		115
-# define D_KEY		100
-# define LEFT_KEY	65361
-# define UP_KEY		65362
-# define RIGHT_KEY	65363
-# define DOWN_KEY	65364
-# define ESC_KEY	65307
+# define W		119
+# define A		97
+# define S		115
+# define D		100
+# define LEFT	65361
+# define UP		65362
+# define RIGHT	65363
+# define DOWN	65364
+# define ESC	65307
 
 /* ************************************************************************** */
 /*                            Message Macros                                  */
@@ -122,6 +122,7 @@ void	game_init(t_game *game);
 int		ft_load_map(char *map, t_game *game);
 
 //frees.c
+int		close_window(t_game *game);
 void	ft_free(t_game *game, char *line);
 void	ft_free_arr(char **arr);
 void	ft_free_collect_pos(t_game *game);
@@ -129,5 +130,7 @@ void	ft_free_collect_pos(t_game *game);
 //load_images.c
 int		ft_load_images(t_game *game);
 void	ft_init_window(t_game *game);
+void	ft_draw_map(t_game *game, int x, int y);
+int		handle_key(int key, t_game *game);
 
 #endif

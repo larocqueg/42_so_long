@@ -26,6 +26,9 @@ int	main(int ac, char **av)
 		if (!ft_load_images(&game))
 			return (ft_free(&game, NULL), ft_free_collect_pos(&game), 1);
 		ft_init_window(&game);
+		ft_draw_map(&game, 0, 0);
+		mlx_key_hook(game.win, handle_key, &game);
+		mlx_loop(game.mlx);
 		return (0);
 	}
 	return (ft_putstr_fd(AV_ERROR, 2), 1);
