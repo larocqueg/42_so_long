@@ -44,6 +44,31 @@ void	ft_init_window(t_game *game)
 	mlx_hook(game->win, 17, 0L, close_window, game);
 }
 
+static void	draw_map_helper(t_game *game, int x, int y)
+{
+	if (game->map[y][x] == '1')
+		mlx_put_image_to_window(game->mlx, game->win,
+			(*game).img.wall, x * 32, y * 32);
+	else if (game->map[y][x] == '0')
+		mlx_put_image_to_window(game->mlx, game->win,
+			(*game).img.floor, x * 32, y * 32);
+	else if (game->map[y][x] == 'P')
+		mlx_put_image_to_window(game->mlx, game->win,
+			(*game).img.player, x * 32, y * 32);
+	else if (game->map[y][x] == 'C')
+		mlx_put_image_to_window(game->mlx, game->win,
+			(*game).img.collectable, x * 32, y * 32);
+	else if (game->map[y][x] == 'E')
+	{
+		if (game->door_open)
+			mlx_put_image_to_window(game->mlx, game->win,
+				(*game).img.door_open, x * 32, y * 32);
+		else
+			mlx_put_image_to_window(game->mlx, game->win,
+				(*game).img.door_close, x * 32, y * 32);
+	}
+}
+
 void	ft_draw_map(t_game *game, int x, int y)
 {
 	while (y < game->map_height)
@@ -51,27 +76,7 @@ void	ft_draw_map(t_game *game, int x, int y)
 		x = 0;
 		while (x < game->map_width)
 		{
-			if (game->map[y][x] == '1')
-				mlx_put_image_to_window(game->mlx, game->win,
-					(*game).img.wall, x * 32, y * 32);
-			else if (game->map[y][x] == '0')
-				mlx_put_image_to_window(game->mlx, game->win,
-					(*game).img.floor, x * 32, y * 32);
-			else if (game->map[y][x] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win,
-					(*game).img.player, x * 32, y * 32);
-			else if (game->map[y][x] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win,
-					(*game).img.collectable, x * 32, y * 32);
-			else if (game->map[y][x] == 'E')
-			{
-				if (game->door_open)
-					mlx_put_image_to_window(game->mlx, game->win,
-						(*game).img.door_open, x * 32, y * 32);
-				else
-					mlx_put_image_to_window(game->mlx, game->win,
-						(*game).img.door_close, x * 32, y * 32);
-			}
+			draw_map_helper(game, x, y);
 			x++;
 		}
 		y++;
@@ -92,44 +97,14 @@ int	handle_key(int key, t_game *game)
 		ft_free(game, NULL);
 		exit(0);
 	}
-	else if ((key == UP || key == W) && game->map[new_y - 1][new_x] != '1')
-		new_y--;
-	else if ((key == DOWN || key == S) && game->map[new_y + 1][new_x] != '1')
-		new_y++;
-	else if ((key == LEFT || key == A) && game->map[new_y][new_x - 1] != '1')
-		new_x--;
-	else if ((key == RIGHT || key == D) && game->map[new_y][new_x + 1] != '1')
-		new_x++;
+	new_y = new_pos_y(key, game, new_y, new_x);
+	new_x = new_pos_x(key, game, new_y, new_x);
 	next_tile = game->map[new_y][new_x];
 	if (next_tile == 'C')
 		ft_printf("Collectables left: %d\n", --game->collectables_c);
-	if (next_tile == 'E' || next_tile == 'O')
-	{
-		if (game->collectables_c == 0)
-		{
-			ft_printf("🎉 You won in %d moves! 🎉\n", game->moves_c);
-			ft_free(game, NULL);
-			exit(0);
-		}
-		return (ft_printf("Exit is locked! Collect all emeralds first!\n"), 0);
-	}
-	if (game->collectables_c == 0)
-	{
-		game->map[game->exit_pos.y][game->exit_pos.x] = 'O';
-		mlx_put_image_to_window(game->mlx, game->win, game->img.door_open,
-			game->exit_pos.x * 32, game->exit_pos.y * 32);
-	}
-	if (next_tile != '1' && next_tile != 'E')
-	{
-		game->map[game->player_pos.y][game->player_pos.x] = '0';
-		if (new_x != game->player_pos.x || new_y != game->player_pos.y)
-		{
-			game->player_pos.x = new_x;
-			game->player_pos.y = new_y;
-			game->map[new_y][new_x] = 'P';
-			ft_printf("Moves: %d\n", ++game->moves_c);
-			ft_draw_map(game, 0, 0);
-		}
-	}
+	if (!is_open(game, next_tile))
+		return (0);
+	collect_check(game);
+	redraw_map(game, new_x, new_y, next_tile);
 	return (0);
 }

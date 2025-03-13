@@ -31,6 +31,7 @@ SRC = $(SRC_DIR)/main.c \
 	  $(SRC_DIR)/frees.c \
 	  $(SRC_DIR)/positions.c \
 	  $(SRC_DIR)/load_images.c \
+	  $(SRC_DIR)/handle_key_helper.c
 
 # Objects
 OBJS = $(SRC:.c=.o)

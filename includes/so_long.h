@@ -116,6 +116,9 @@ int		set_exit_pos(t_game *game, int x, int y);
 
 //utils.c
 int		ft_open(char *map, t_game *game);
+int		new_pos_x(int key, t_game *game, int new_y, int new_x);
+int		new_pos_y(int key, t_game *game, int new_y, int new_x);
+int		is_open(t_game *game, char next_tile);
 
 //game_start.c
 void	game_init(t_game *game);
@@ -132,5 +135,9 @@ int		ft_load_images(t_game *game);
 void	ft_init_window(t_game *game);
 void	ft_draw_map(t_game *game, int x, int y);
 int		handle_key(int key, t_game *game);
+
+//handle_key_helper.c
+void	collect_check(t_game *game);
+void	redraw_map(t_game *game, int new_x, int new_y, char next_tile);
 
 #endif

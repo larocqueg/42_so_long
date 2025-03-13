@@ -33,3 +33,36 @@ int	ft_open(char *map, t_game *game)
 		return (close(game->fd), ft_putstr_fd(FORMAT_ERROR, 2), 0);
 	return (game->fd);
 }
+
+int	new_pos_x(int key, t_game *game, int new_y, int new_x)
+{
+	if ((key == LEFT || key == A) && game->map[new_y][new_x - 1] != '1')
+		new_x--;
+	else if ((key == RIGHT || key == D) && game->map[new_y][new_x + 1] != '1')
+		new_x++;
+	return (new_x);
+}
+
+int	new_pos_y(int key, t_game *game, int new_y, int new_x)
+{
+	if ((key == UP || key == W) && game->map[new_y - 1][new_x] != '1')
+		new_y--;
+	else if ((key == DOWN || key == S) && game->map[new_y + 1][new_x] != '1')
+		new_y++;
+	return (new_y);
+}
+
+int	is_open(t_game *game, char next_tile)
+{
+	if (next_tile == 'E' || next_tile == 'O')
+	{
+		if (game->collectables_c == 0)
+		{
+			ft_printf("🎉You won in %d moves!🎉\n", game->moves_c);
+			ft_free(game, NULL);
+			exit(0);
+		}
+		return (ft_printf("Exit is locked! Collect all emeralds first!\n"), 0);
+	}
+	return (1);
+}
