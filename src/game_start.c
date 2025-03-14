@@ -100,6 +100,9 @@ int	ft_load_map(char *map, t_game *game)
 			return (ft_free(game, line, 0), 0);
 		free(line);
 	}
-	game->map_height = ft_get_height(game);
+	if (game->map)
+		game->map_height = ft_get_height(game);
+	else
+		return (ft_free(game, NULL, 0), 0);
 	return (get_next_line(-1), 1);
 }

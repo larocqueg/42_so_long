@@ -118,6 +118,8 @@ static void	set_collectables_pos(t_game *game)
 
 int	validations(t_game *game)
 {
+	if (!game->map || !game->map[0])
+		return (ft_free(game, NULL, 0), ft_putstr_fd(EMPTY, 2), 0);
 	if (!valid_lines(game))
 		return (ft_free(game, NULL, 0), ft_putstr_fd(MAP_SIZE, 2), 0);
 	else if (!valid_walls(game))

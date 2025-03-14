@@ -41,6 +41,7 @@
 /*                            Message Macros                                  */
 /* ************************************************************************** */
 
+# define EMPTY			"Error: empty or invalid file!\n"
 # define NO_FILE		"Error: no such file or directory: "
 # define FORMAT_ERROR	"Error: invlid map format, ensure the file is .ber\n"
 # define MAP_SIZE		"Error: invalid map size!\n"
