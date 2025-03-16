@@ -16,7 +16,10 @@ int	set_player_pos(t_game *game, int x, int y)
 {
 	game->players_c++;
 	if (game->players_c > 1)
+	{
+		game->players_c = 0;
 		return (0);
+	}
 	game->player_pos.x = x;
 	game->player_pos.y = y;
 	return (1);
@@ -26,7 +29,10 @@ int	set_exit_pos(t_game *game, int x, int y)
 {
 	game->exit_c++;
 	if (game->exit_c > 1)
+	{
+		game->exit_c = 0;
 		return (0);
+	}
 	game->exit_pos.x = x;
 	game->exit_pos.y = y;
 	return (1);
